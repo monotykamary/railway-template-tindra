@@ -8,19 +8,16 @@ One Go binary, one PostgreSQL database. Point your existing Sentry SDK DSN at Ti
 
 - Tindra `0.6.4` (pinned: [release v0.6.4](https://github.com/blendbyte/tindra/releases/tag/v0.6.4), image `ghcr.io/blendbyte/tindra:0.6.4`, digest `sha256:980668a5c511b648e5551a389ffe2984a059cac2732ef9bd6d5955b7d16ac346`)
 - PostgreSQL `18-alpine` with a persistent data volume
+- A `tindra-setup` one-shot service that creates the first administrator
 - A Railway volume on the Tindra service for uploaded source maps (`/data`)
 
 All background jobs — uptime probes, cron monitor evaluation, alert digests, retention, and version checks — run inside the single Tindra process. No Redis, no worker service, no queue.
 
 ## First administrator
 
-Tindra has no sign-up page. After the first deploy completes, open the Railway shell for the `tindra` service and create your administrator:
+Tindra has no sign-up page. The template ships a `tindra-setup` service (see [`setup/`](setup)) that runs the official Tindra CLI once against the database and creates the first administrator, then stops. Set `SETUP_ADMIN_EMAIL` and `SETUP_ADMIN_PASSWORD` (minimum 12 characters) on the `tindra-setup` service — the template prompts for them at deploy time. If the administrator already exists, the service exits successfully with "nothing to do"; delete the service after your first login.
 
-```bash
-/tindra users create --email you@example.com --name "Your Name" --password 'a-long-password'
-```
-
-Passwords must be at least 12 characters. On first login you will be asked to set up MFA (this is the default `REQUIRE_MFA=true`).
+On first login you will be asked to set up MFA (this is the default `REQUIRE_MFA=true`).
 
 ## Important limits
 
@@ -29,7 +26,7 @@ Passwords must be at least 12 characters. On first login you will be asked to se
 - Email alerts require an external provider (SMTP, Postmark, Brevo, Lettermint, AhaSend, or Cloudflare Email Routing) — leave `EMAIL_PROVIDER` unset to run without email.
 - SSO (Google, GitHub, Microsoft, Auth0, Zitadel, generic OIDC) requires provider credentials and `OAUTH_REDIRECT_BASE`.
 - Tindra contacts `tindra.sh` every 6 hours to check for new versions. Disable with `DISABLE_VERSION_CHECK=true`.
-- This template runs the official upstream image unmodified; there is no fork.
+- The main `tindra` service runs the official upstream image unmodified. The only repository-owned adapter is the `tindra-setup` bootstrap image ([`setup/`](setup)), which adds a shell runtime around the pinned upstream CLI because the upstream image is distroless.
 
 ## Version pins
 

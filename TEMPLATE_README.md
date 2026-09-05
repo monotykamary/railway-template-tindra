@@ -17,15 +17,15 @@ Tindra is a self-hosted error tracking, performance monitoring, profiling, uptim
 
 ### Deployment Dependencies
 
-The template creates two Railway resources: the public `tindra` service and a PostgreSQL `18-alpine` service. Tindra owns a persistent volume at `/data` for source maps; Postgres owns a persistent data volume. There is no Redis, no queue, and no separate worker — all background jobs run inside the Tindra process.
+The template creates three Railway resources: the public `tindra` service, a PostgreSQL `18-alpine` service, and a one-shot `tindra-setup` service that creates the first administrator. Tindra owns a persistent volume at `/data` for source maps; Postgres owns a persistent data volume. There is no Redis, no queue, and no separate worker — all background jobs run inside the Tindra process.
 
 ### Implementation Details
 
 The `tindra` service owns the public HTTPS domain and listens on port 8080. `DATABASE_URL` references Postgres over Railway private networking with a generated password. Tindra runs database migrations automatically at startup, so the schema is always current on deploy.
 
-The first administrator has no sign-up page: open the Railway shell for the `tindra` service and run `/tindra users create --email you@example.com --name "Your Name" --password 'a-long-password'` (minimum 12 characters). First login requires MFA setup by default (`REQUIRE_MFA=true`).
+The first administrator is created by `tindra-setup`, which runs the official Tindra CLI once and stops. Fill in `SETUP_ADMIN_EMAIL` and `SETUP_ADMIN_PASSWORD` (minimum 12 characters) when deploying — the template prompts for them. The service exits successfully after creating the administrator (or if the administrator already exists on a later redeploy), and can be deleted after your first login. First login requires MFA setup by default (`REQUIRE_MFA=true`).
 
-Generated variables: `POSTGRES_PASSWORD` for the database, `PUBLIC_URL` wired to the Railway public domain (used to build project DSNs), and `COOKIE_SECURE=true` for HTTPS-only cookies. `PUBLIC_URL` must match the domain users actually visit or DSNs generated in the dashboard will point at the wrong host.
+Generated variables: `POSTGRES_PASSWORD` for the database, `PUBLIC_URL` wired to `https://` plus the Railway public domain (used to build project DSNs), and `COOKIE_SECURE=true` for HTTPS-only cookies. `PUBLIC_URL` must match the domain users actually visit or DSNs generated in the dashboard will point at the wrong host.
 
 Do not change cross-service references independently — `DATABASE_URL` is wired to the Postgres private hostname and the generated `POSTGRES_PASSWORD`.
 
