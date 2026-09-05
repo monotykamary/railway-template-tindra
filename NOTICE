@@ -1,0 +1,17 @@
+railway-template-tindra
+
+Tindra is developed and maintained by Blendbyte.
+
+  Upstream:   https://github.com/blendbyte/tindra
+  Release:    https://github.com/blendbyte/tindra/releases/tag/v0.6.4
+  License:    Elastic License 2.0 (see LICENSE)
+
+assets/tindra-512.png is derived from the upstream file web/public/favicon.svg
+at tag v0.6.4. The transformation is a rasterization at 10x resolution, an
+alpha-bounds trim, and an aspect-preserving scale to 480 pixels centered on a
+512x512 transparent canvas. No color, shape, or proportion changes were made.
+The mark remains the trademark of Blendbyte and is used here for attribution
+and identification of the upstream product in a deployment template.
+
+This repository deploys the official, unmodified upstream container image
+ghcr.io/blendbyte/tindra. No upstream code is modified or forked.
