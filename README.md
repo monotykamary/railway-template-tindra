@@ -4,6 +4,8 @@ A pinned Railway deployment for [Tindra](https://github.com/blendbyte/tindra), t
 
 One Go binary, one PostgreSQL database. Point your existing Sentry SDK DSN at Tindra and nothing else changes.
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/tindra?referralCode=ZqgrJ0)
+
 ## What this deploys
 
 - Tindra `0.6.4` (pinned: [release v0.6.4](https://github.com/blendbyte/tindra/releases/tag/v0.6.4), image `ghcr.io/blendbyte/tindra:0.6.4`, digest `sha256:980668a5c511b648e5551a389ffe2984a059cac2732ef9bd6d5955b7d16ac346`)
