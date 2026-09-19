@@ -3,7 +3,7 @@ railway-template-tindra
 Tindra is developed and maintained by Blendbyte.
 
   Upstream:   https://github.com/blendbyte/tindra
-  Release:    https://github.com/blendbyte/tindra/releases/tag/v0.6.4
+  Release:    https://github.com/blendbyte/tindra/releases/tag/v1.0.3
   License:    Elastic License 2.0 (see LICENSE)
 
 assets/tindra-512.png is derived from the upstream file web/public/favicon.svg

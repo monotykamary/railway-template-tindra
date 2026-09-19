@@ -8,7 +8,7 @@ One Go binary, one PostgreSQL database. Point your existing Sentry SDK DSN at Ti
 
 ## What this deploys
 
-- Tindra `0.6.4` (pinned: [release v0.6.4](https://github.com/blendbyte/tindra/releases/tag/v0.6.4), image `ghcr.io/blendbyte/tindra:0.6.4`, digest `sha256:980668a5c511b648e5551a389ffe2984a059cac2732ef9bd6d5955b7d16ac346`)
+- Tindra `1.0.3` (pinned: [release v1.0.3](https://github.com/blendbyte/tindra/releases/tag/v1.0.3), image `ghcr.io/blendbyte/tindra:1.0.3`, digest `sha256:1559b7bb633c03569e00ed43c05521d37ca559cde1d1216234a25b6a91cfae89`)
 - PostgreSQL `18-alpine` with a persistent data volume
 - A `tindra-setup` one-shot service that creates the first administrator
 - A Railway volume on the Tindra service for uploaded source maps (`/data`)
@@ -45,5 +45,5 @@ See [`versions.env`](versions.env). Every image is pinned by version and immutab
 
 - Source: https://github.com/blendbyte/tindra
 - Docs: https://tindra.sh/docs
-- Release: https://github.com/blendbyte/tindra/releases/tag/v0.6.4
+- Release: https://github.com/blendbyte/tindra/releases/tag/v1.0.3
 - License: Elastic License 2.0; see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE)

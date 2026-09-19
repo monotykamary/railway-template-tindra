@@ -2,7 +2,7 @@
 
 ## About Hosting Tindra
 
-Tindra is a self-hosted error tracking, performance monitoring, profiling, uptime monitoring, and cron monitoring platform with full Sentry SDK compatibility. This template deploys the stable release `0.6.4` as a single Go binary backed by PostgreSQL 18, with persistent volumes for the database and uploaded source maps.
+Tindra is a self-hosted error tracking, performance monitoring, profiling, uptime monitoring, and cron monitoring platform with full Sentry SDK compatibility. This template deploys the stable release `1.0.3` as a single Go binary backed by PostgreSQL 18, with persistent volumes for the database and uploaded source maps.
 
 ## Common Use Cases
 
