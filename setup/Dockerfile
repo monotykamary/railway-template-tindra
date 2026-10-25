@@ -3,7 +3,7 @@
 # this wrapper adds a minimal shell runtime for the one-shot bootstrap.
 FROM ghcr.io/blendbyte/tindra:1.1.3@sha256:5a3f93d36be20af49748361b07ebd7c24d47980f9d816fe0f5356dc8add81eb9 AS tindra
 
-FROM alpine:3.21@sha256:48b0309ca019d89d40f670aa1bc06e426dc0931948452e8491e3d65087abc07d
+FROM alpine:3.24@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
 COPY --from=tindra /tindra /tindra
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
